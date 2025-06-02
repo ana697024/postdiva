@@ -10,4 +10,4 @@ function item({ post, author }) {
   );
 }
 
-export default item;
+export default item;  //ORGANIZAÇÃO de cada post 
