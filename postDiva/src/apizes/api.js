@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-//  posts
-axios.get('https://jsonplaceholder.typicode.com/posts')
-  .then(res => console.log(res.data));
+const api = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com',
+});
 
-// users
-axios.get('https://jsonplaceholder.typicode.com/users')
-  .then(res => console.log(res.data));
+export { api };

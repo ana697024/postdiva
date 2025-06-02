@@ -1,12 +1,16 @@
-function Item({ post, author }) {
+import { Link } from 'react-router-dom';
+import '../pages/home.css'; // Ajustado para a pasta pages
+
+function PostItem({ post, author }) {
   return (
-    <div style={{ margin: '20px 0' }}>
-      <h2>{post.title}</h2>
-      <p>Autor: {author.name}</p>
-      <Link to={`/post/${post.id}`}>Ver detalhes →</Link>
+    <div className="post-card">
+      <h2 className="post-title">{post.title}</h2>
+      <p className="post-author">Autor: {author}</p>
+      <Link to={`/post/${post.id}`} className="post-link">
+        Ver detalhes →
+      </Link>
     </div>
   );
 }
 
-export default Item;
-//ORGANIZAÇÃO de cada post 
+export default PostItem;

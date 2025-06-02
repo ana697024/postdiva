@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../apizes/api';
 import PostItem from './item';
+import '../pages/home.css'; // Ajustado para a pasta pages
 
 function PostList() {
   const [posts, setPosts] = useState([]);
@@ -8,10 +9,14 @@ function PostList() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const postsRes = await api.get('/posts');
-      const usersRes = await api.get('/users');
-      setPosts(postsRes.data);
-      setUsers(usersRes.data);
+      try {
+        const postsRes = await api.get('/posts');
+        const usersRes = await api.get('/users');
+        setPosts(postsRes.data);
+        setUsers(usersRes.data);
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      }
     };
 
     fetchData();
@@ -23,11 +28,13 @@ function PostList() {
   };
 
   return (
-    <div>
-      <h1>Posts</h1>
-      {posts.map((post) => (
-        <PostItem key={post.id} post={post} author={getAuthorName(post.userId)} />
-      ))}
+    <div className="home-container">
+      <h1 className="home-title">Lista de Posts</h1>
+      <div className="posts-grid">
+        {posts.map((post) => (
+          <PostItem key={post.id} post={post} author={getAuthorName(post.userId)} />
+        ))}
+      </div>
     </div>
   );
 }
